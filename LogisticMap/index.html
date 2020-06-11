@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>new website</title>
+
+  <!-- Import Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+  <!-- Google CDN jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- $ UI -->
+  <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
+  <!-- bootstrap css -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+
+  <link rel='stylesheet' type='text/css' href='bulkStyles.css' />
+
+  <link rel='stylesheet' type='text/css' href='styles.css' />
+
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <h1>x<sub>n+1</sub> = rx ⋅ (cap function)
+    <span style='font-size:12px'><sub>&emsp;<-- the logistic map</sub></span>
+  </h1>
+
+
+  <input id='xn-slider' type="range" min="0" max="100" value="50"><br>
+  <div data-tooltip='Initial population' class='left-label'>x<sub>0</sub> :&nbsp;</div>
+  <textarea rows='1' cols='10' id='xn-val'>50</textarea>
+  <div class='right-notes'>Initial Population : 100 > x<sub>0</sub> > 0 (percentage of maximum population)</div>
+  <div class='e' id='nan-error-1'>not a number</div>
+  <br>
+
+  <input id='r-slider' type="range" min="100" max="500" value="115"><br>
+  <div data-tooltip='Growth rate' class='left-label'>r :&nbsp;</div>
+  <textarea rows='1' cols='10' id='r-val'>1.15</textarea>
+  <div class='right-notes'>Growth Rate Per Year : r can be any number greater than 1</div>
+  <div class='e' id='nan-error-2'>not a number</div>
+  <div style='margin-bottom:10px'></div>
+
+  <input id='iterations-slider' type="range" min="1" max="50" value="20"><br>
+  <div style='position: relative; top: 4px'>
+    <div data-tooltip='Iterations' class='left-label'>iterations :&nbsp;</div>
+    <textarea rows='1' cols='10' id='iterations-val'>20</textarea>
+    <div class='right-notes'># of Iterations : Years to simulate (max x<sub>n</sub>)</div>
+    <div class='e' id='nan-error-3'>not a number</div>
+  </div>
+  <div style='margin-bottom:50px'></div>
+
+  <div class='left-label'>cap function:</div>
+  <br>
+  <textarea rows='2' cols='20' id='cfdt'>1-xn</textarea>
+  <br>
+  <div class='right-notes' id='cfd'>
+    <span style='font-family:"roboto mono"'>(Write in javascript)</span>
+    <br><br>
+    The cap function caps the population, preventing it from blowing up
+    to infinity<br>The cap function should softcap (or hardcap) x<sub>n</sub> between 0% and 100%<br><br>
+    <span style='font-family:"roboto mono"'>Variables parsed: 'r' and 'xn' (x<sub>n</sub>)</span>
+  </div>
+
+  <h2>
+    <span id='wait-placeholder' class='loading' style='color: #0d39ff'></span>
+    <span id='output-formula' style='color: #555'></span>
+  </h2>
+
+  <h3 style='color: #888'>
+    Series: x<sub>0</sub> 🠒 x<sub><span id='series-end'>20</sub></span>
+  </h3>
+
+  <div id='resizable'>
+    <div id='chart-container'>
+      <canvas id='chart'></canvas>
+    </div>
+  </div>
+
+  <div id='tips'></div>
+
+
+
+<script src="chart.min.js"></script>
+<script src="definitions.js"></script>
+<script src="functions.js"></script>
+<script>
+
+
+
+
+var xn = 0.5
+var r = 1.15
+var iterations = 20
+var capFunction = '1-xn'
+
+
+
+
+
+update()
+
+
+
+
+
+</script>
+
+
+<!-- <script src='scripts/index.js'></script> -->
+
+<!-- bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+
+
+</body>
+
+</html>
