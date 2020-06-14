@@ -44,7 +44,7 @@ function update() {
 function rewriteFormula() {
   let capfText = capFunction.replace('xn', 'x<sub>n</sub>').replace('r', r)
   $('#wait-placeholder').hide()
-  $('#output-formula').html('x<sub>n+1</sub> = ' + r + 'x ⋅ (' + capfText + ')').show()
+  $('#output-formula').html('x<sub>n+1</sub> = ' + r + '(x<sub>n</sub>) ⋅ (' + capfText + ')').show()
   $('#series-end').html(iterations)
 }
 
