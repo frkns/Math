@@ -1,28 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>/MATH/</title>
-    <!-- Vue -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  </head>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>life</title>
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Import Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+  <!-- Vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <style>
+    #ROOT {
+      font-family: 'roboto';
+      font-size: 15px;
+    }
+    td {
+      background: #dedede;
+      width: 12px;
+      height: 12px;
+      /* border: 0px solid white; */
+    }
+    td.alive {
+      background: red;
+    }
+    button {
+      display: inline-block;
+    }
+    input {
+      width: 250px;
+    }
+  </style>
+</head>
 
 <body>
-  <ul id='r'>
-    <li v-for='link in links'><a v-bind:href='link'>/{{ link }}</a></li>
-  </ul>
-</body>
 
-<script>
-  const v = new Vue({
-    el: '#r',
-    data: {
-      links: [
-        'ConwaysGameOfLife',
-        'LogisticMap'
-      ]
-    }
-  })
-</script>
+<div id="ROOT" v-if='ready'>
+
+<button v-on:click='draw()'>Redraw</button>
+<button v-on:click='start()'>Start Simulation</button>
+<button v-on:click='stop()'>Stop Simulation</button>
+<button v-on:click='update()'>Simulate 1 tick</button>
+
+<table>
+  <tr v-for='y in map'>
+    <td v-for='x in y' v-bind:class='{ alive: x === 1 }'></td>
+  </tr>
+</table>
+
+<div>
+  Cell can live on border: false<br><br>
+
+  Chance for cell to spawn alive: {{ chanceToBeAlive }}%<br>
+  <input type="range" min=1 max=100 value=25 class="slider" id="sA">
+  <br><br>
+  Tick interval: {{ tickInterval }}ms<br>
+  <input type="range" min=10 max=500 value=70 class="slider" id="sB">
+</div>
+
+
+
+</div>
+
+<script src='index.js'></script>
+
+
 
 </html>
