@@ -6,7 +6,7 @@ var p = new Vue({
     height: 30,
     map: [],
     chanceToBeAlive: 25,
-    tickInterval: 70,
+    tickInterval: 200,
     i: null,
     iState: 0,
   }),
@@ -18,23 +18,25 @@ var p = new Vue({
       for (var h = 0; h < this.height; h++) {
         this.map.push([])
         for (var w = 0; w < this.width; w++) {
-          if (h == 0 || w == 0 || h == this.height-1 || w == this.width-1) {
-            this.map[h][w] = 0
-          } else {
+          // if (h == 0 || w == 0 || h == this.height-1 || w == this.width-1) {
+          //   this.map[h][w] = 0
+          // } else {
             this.map[h][w] = (Math.random() < this.chanceToBeAlive/100) ? 1 : 0
-          }
+          // }
         }
       }
     },
     update() {
       let mirrorMap = this.map
-      for (var y = 1; y < this.height-1; y++) {
-        for (var x = 1; x < this.height-1; x++) {
-          let neighboursAlive = (
-              this.map[y-1][x-1] + this.map[y-1][x] + this.map[y-1][x+1] // top layer
-            + this.map[y][x-1] + this.map[y][x] + this.map[y][x+1] // middle
-            + this.map[y+1][x-1] + this.map[y+1][x] + this.map[y+1][x+1] // bottom
-          )
+      for (var y = 0; y < this.height; y++) {
+        for (var x = 0; x < this.height; x++) {
+          let neighboursAlive = 0
+          for (var b = -1; b < 2; b++) {
+            for (var a = -1; a < 2; a++) {
+               neighboursAlive += this.map[(y+b+this.width)%this.width][(x+a+this.height)%this.height]
+            }
+          }
+
           switch (neighboursAlive) {
             case 2:  // stays alive if alive
               break;

@@ -41,7 +41,7 @@
 
 <button v-on:click='draw()'>Redraw</button>
 <button v-on:click='start()'>Start Simulation</button>
-<button v-on:click='stop()'>Stop Simulation</button>
+<button v-on:click='stop()'>Pause Simulation</button>
 <button v-on:click='update()'>Simulate 1 tick</button>
 
 <table>
@@ -50,14 +50,14 @@
   </tr>
 </table>
 
+
 <div>
-  Cell can live on border: false<br><br>
 
   Chance for cell to spawn alive: {{ chanceToBeAlive }}%<br>
   <input type="range" min=1 max=100 value=25 class="slider" id="sA">
   <br><br>
   Tick interval: {{ tickInterval }}ms<br>
-  <input type="range" min=10 max=500 value=70 class="slider" id="sB">
+  <input type="range" min=10 max=1000 value=200 class="slider" id="sB">
 </div>
 
 
