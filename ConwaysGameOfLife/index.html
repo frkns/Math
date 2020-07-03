@@ -10,17 +10,21 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
   <!-- Vue -->
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 
   <style>
     #ROOT {
       font-family: 'roboto';
       font-size: 15px;
     }
+    table {
+      cursor: pointer;
+       border-spacing: 1px;
+    }
     td {
       background: #dedede;
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       /* border: 0px solid white; */
     }
     td.alive {
@@ -39,14 +43,21 @@
 
 <div id="ROOT" v-if='ready'>
 
-<button v-on:click='draw()'>Redraw</button>
+<button v-on:click='draw()'>Randomly Redraw</button>
 <button v-on:click='start()'>Start Simulation</button>
 <button v-on:click='stop()'>Pause Simulation</button>
 <button v-on:click='update()'>Simulate 1 tick</button>
 
+<select id='select-preset'>
+  <option value="random">Random (select preset)</option>
+  <option value="blank">Blank</option>
+  <option value="glider">Glider</option>
+  <option value="gliderGun">Glider Gun</option>
+</select>
+
 <table>
-  <tr v-for='y in map'>
-    <td v-for='x in y' v-bind:class='{ alive: x === 1 }'></td>
+  <tr v-for='(y, ry) in (height, map)'>
+    <td v-for='(x, rx) in (width, y)' :class='{alive: map[ry][rx] === 1}' @click='userInput(ry, rx)'></td>
   </tr>
 </table>
 
