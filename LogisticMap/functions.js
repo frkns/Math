@@ -26,7 +26,7 @@ function updateChart() {
 
 function update() {
   try {
-    if (!(+r === +r) || r === '' || r < 1 || iterations > 50 || iterations < 1) throw 'e'
+    if (!(+r === +r) || r === '' || r < 1 || iterations > 200 || iterations < 1) throw 'e'
     xn = parseFloat(xn)
     r = parseFloat(r)
 
@@ -106,7 +106,7 @@ iterationsVal.oninput = function() {
   $('#nan-error-3').hide()
   let val = iterationsVal.value.replace(/^\s+|\s+$/g, '')  // strip spaces
   if (val < 1) val = 1
-  if (val > 50) val = 50
+  if (val > 200) val = 200
   iterationsVal.value = val
   iterations = val
   iterationsSlider.value = val
