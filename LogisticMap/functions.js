@@ -52,7 +52,7 @@ function logistic(rounding=2) {
   let l = []
   let _xn = xn
   let _r = r
-  let parsed = capFunction.toLowerCase().replace('r', '_r').replace('xn', '_xn')
+  let parsed = capFunction.replace(/r/ig, '_r').replace(/xn/ig, '_xn')
   for (let _ = 0; _ <= iterations; _++) {
     l.push((_xn * 100).toFixed(rounding))
     _xn = _r * _xn * eval(parsed)
