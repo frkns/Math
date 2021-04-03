@@ -50,9 +50,9 @@ function rewriteFormula() {
 
 function logistic(rounding=2) {
   let l = []
-  let xn = xn
-  let r = r
-  let parsed = capFunction
+  var xn = xn
+  var r = r
+  var parsed = capFunction
   for (let _ = 0; _ <= iterations; _++) {
     l.push((xn * 100).toFixed(rounding))
     xn = r * xn * eval(parsed)
