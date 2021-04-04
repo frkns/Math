@@ -50,13 +50,13 @@ function rewriteFormula() {
 
 function logistic(rounding=2) {
   let l = []
-  var xn = xn
-  var r = r
-  var parsed = capFunction
+  let _xn = xn
+  let _r = r
+  let parsed = capFunction.replace(/\[r\]/ig, '_r').replace(/\[xn\]/ig, '_xn')
   for (let _ = 0; _ <= iterations; _++) {
-    l.push((xn * 100).toFixed(rounding))
-    xn = r * xn * eval(parsed)
-    if (xn < 0) xn = 0
+    l.push((_xn * 100).toFixed(rounding))
+    _xn = _r * _xn * eval(parsed)
+    if (_xn < 0) _xn = 0
   }
   return l
 }
