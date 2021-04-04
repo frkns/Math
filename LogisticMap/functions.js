@@ -42,7 +42,7 @@ function update() {
 }
 
 function rewriteFormula() {
-  let capfText = capFunction.replace('xn', 'x<sub>n</sub>').replace('r', r)
+  let capfText = capFunction.replace(/\[xn\]/g, 'x<sub>n</sub>').replace(/\[r\]/, r)
   $('#wait-placeholder').hide()
   $('#output-formula').html('x<sub>n+1</sub> = ' + r + '(x<sub>n</sub>) ⋅ (' + capfText + ')').show()
   $('#series-end').html(iterations)
@@ -52,7 +52,7 @@ function logistic(rounding=2) {
   let l = []
   let _xn = xn
   let _r = r
-  let parsed = capFunction.replace(/\[r\]/ig, '_r').replace(/\[xn\]/ig, '_xn')
+  let parsed = capFunction.replace(/\[r\]/g, '_r').replace(/\[xn\]/g, '_xn')
   for (let _ = 0; _ <= iterations; _++) {
     l.push((_xn * 100).toFixed(rounding))
     _xn = _r * _xn * eval(parsed)
